@@ -17,6 +17,7 @@
         android:layout_marginBottom="18dp"
         android:background="@drawable/btn_guide_selector"
         android:gravity="center"
+        android:visibility="gone"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="开始体验" />

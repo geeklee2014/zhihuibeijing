@@ -3,10 +3,16 @@ package com.siyuan.zhbj;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
@@ -30,6 +36,20 @@ public class GuideActivity extends Activity
 		
 		GuideAdapter adapter = new GuideAdapter();
 		viewPagerGuide.setAdapter(adapter);
+		viewPagerGuide.setOnPageChangeListener(adapter);
+		btnStart.setOnClickListener(new OnClickListener()
+		{
+			
+			@Override
+			public void onClick(View v)
+			{
+				SharedPreferences sp = getSharedPreferences("zhbj", Context.MODE_PRIVATE);
+				sp.edit().putBoolean("is_guide_show", true).commit();
+				Intent intent = new Intent(GuideActivity.this, MainActivity.class);
+				startActivity(intent);
+				finish();
+			}
+		});
 	}
 	private void initData()
 	{
@@ -48,7 +68,7 @@ public class GuideActivity extends Activity
 		viewPagerGuide = (ViewPager) findViewById(R.id.viewPagerGuide);
 		btnStart = (Button) findViewById(R.id.btnStart);
 	}
-	class GuideAdapter extends PagerAdapter
+	class GuideAdapter extends PagerAdapter implements OnPageChangeListener
 	{
 
 		@Override
@@ -75,6 +95,29 @@ public class GuideActivity extends Activity
 		public void destroyItem(ViewGroup container, int position, Object object)
 		{
 			container.removeView((View) object);
+		}
+
+		@Override
+		public void onPageScrolled(int position, float positionOffset,
+				int positionOffsetPixels)
+		{
+			
+		}
+
+		@Override
+		public void onPageSelected(int position)
+		{
+			Log.d("GuideActivity", position + "");
+			if (position == mGuidePic.length - 1)
+				{
+					btnStart.setVisibility(View.VISIBLE);
+				}
+		}
+
+		@Override
+		public void onPageScrollStateChanged(int state)
+		{
+			
 		}
 		
 	}
