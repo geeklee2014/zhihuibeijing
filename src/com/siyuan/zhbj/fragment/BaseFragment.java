@@ -23,6 +23,13 @@ public abstract class BaseFragment extends Fragment
 		View view = initView();
 		return view;
 	}
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState)
+	{
+		// TODO Auto-generated method stub
+		super.onActivityCreated(savedInstanceState);
+		initData();
+	}
 	
 	public abstract View initView();
 	
