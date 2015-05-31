@@ -3,9 +3,10 @@ package com.siyuan.zhbj.fragment;
 import java.util.ArrayList;
 
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -16,11 +17,15 @@ import com.siyuan.zhbj.base.impl.HomePager;
 import com.siyuan.zhbj.base.impl.NewsCenterPager;
 import com.siyuan.zhbj.base.impl.SettingPager;
 import com.siyuan.zhbj.base.impl.SmartServicePager;
+import com.siyuan.zhbj.view.NoScrollViewPager;
 
 public class ContentFragment extends BaseFragment
 {
 	@ViewInject(R.id.vp_content)
-	private ViewPager mViewPager;
+	private NoScrollViewPager mViewPager;
+	@ViewInject(R.id.radioGroup)
+	private RadioGroup radioGroup;
+
 	private ArrayList<BasePager> mPagers;
 
 	@Override
@@ -44,6 +49,35 @@ public class ContentFragment extends BaseFragment
 
 		ContentAdapter adapter = new ContentAdapter();
 		mViewPager.setAdapter(adapter);
+
+		radioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener()
+		{
+			@Override
+			public void onCheckedChanged(RadioGroup group, int checkedId)
+			{
+				switch (checkedId)
+				{
+				case R.id.home:
+					mViewPager.setCurrentItem(0);
+					break;
+				case R.id.news_center:
+					mViewPager.setCurrentItem(1);
+					break;
+				case R.id.smart_service:
+					mViewPager.setCurrentItem(2);
+					break;
+				case R.id.gov_affair:
+					mViewPager.setCurrentItem(3);
+					break;
+				case R.id.setting:
+					mViewPager.setCurrentItem(4);
+					break;
+
+				default:
+					break;
+				}
+			}
+		});
 
 	}
 

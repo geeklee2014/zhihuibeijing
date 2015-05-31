@@ -18,7 +18,6 @@ public class HomePager extends BasePager
 	@Override
 	public void initData()
 	{
-		// TODO Auto-generated method stub
 		super.initData();
 		TextView textview = new TextView(mActivity);
 		textview.setText("Ê×Ò³");
