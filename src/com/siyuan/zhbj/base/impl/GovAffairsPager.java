@@ -19,6 +19,9 @@ public class GovAffairsPager extends BasePager
 	public void initData()
 	{
 		super.initData();
+		
+		mTitle.setText("人口服务");
+		
 		TextView textview = new TextView(mActivity);
 		textview.setText("政务");
 		textview.setTextSize(30);

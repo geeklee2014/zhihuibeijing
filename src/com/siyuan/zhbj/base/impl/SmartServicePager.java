@@ -19,6 +19,9 @@ public class SmartServicePager extends BasePager
 	public void initData()
 	{
 		super.initData();
+		
+		mTitle.setText("生活");
+		
 		TextView textview = new TextView(mActivity);
 		textview.setText("智慧服务");
 		textview.setTextSize(30);
